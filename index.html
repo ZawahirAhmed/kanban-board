@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add this in your HTML file's head section -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Sign-up/Login Modal -->
+        <div id="auth-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('auth-modal')">&times;</span>
+                <div id="auth">
+                    <div id="signup">
+                        <h2>Sign Up</h2>
+                        <input type="text" id="signup-username" placeholder="Username">
+                        <input type="password" id="signup-password" placeholder="Password">
+                        <button onclick="signUp()">Sign Up</button>
+                    </div>
+                    <div id="login" class="hidden">
+                        <h2>Login</h2>
+                        <input type="text" id="login-username" placeholder="Username">
+                        <input type="password" id="login-password" placeholder="Password">
+                        <button onclick="login()">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kanban Board -->
+        <div id="board">
+            <div id="toolbar">
+                <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+                <button onclick="openEditModal()">Edit Card</button>
+                <button onclick="deleteAllCards()">Delete All Cards</button>
+            </div>
+            <div class="column">
+                <h3>To Do</h3>
+                <div class="card-container" id="todo"></div>
+                <button onclick="addCard('todo')">Add Card</button>
+            </div>
+            <div class="column">
+                <h3>Doing</h3>
+                <div class="card-container" id="doing"></div>
+                <button onclick="addCard('doing')">Add Card</button>
+            </div>
+            <div class="column">
+                <h3>Done</h3>
+                <div class="card-container" id="done"></div>
+                <button onclick="addCard('done')">Add Card</button>
+            </div>
+        </div>
+
+        <!-- Edit Card Modal -->
+        <div id="edit-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('edit-modal')">&times;</span>
+                <h2>Edit Card</h2>
+                <input type="text" id="edit-card-title" placeholder="Title">
+                <input type="date" id="edit-card-date">
+                <select id="edit-card-progress">
+                    <option value="0">0%</option>
+                    <option value="25">25%</option>
+                    <option value="50">50%</option>
+                    <option value="75">75%</option>
+                    <option value="100">100%</option>
+                </select>
+                <button onclick="saveEditedCard()">OK</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
